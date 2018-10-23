@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://192.168.20.10/lsboxes/'
+    apiUrl: 'http://lsystemsboxes.000webhostapp.com/server/'
 };
 
 /*

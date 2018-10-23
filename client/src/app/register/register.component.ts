@@ -2,6 +2,7 @@ import { environment } from './../../environments/environment';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'app-register',
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     crearCuenta() {
@@ -33,13 +35,18 @@ export class RegisterComponent implements OnInit {
                        nickname: this.nickname,
                        telefono: this.telefono
         };
-        if (this.identificacion == '' || this.nombres == '' || this.apellidos == '' || this.email == '' || this.nickname == '') {
-            return;
-        }
         this.http
             .post(this.webServiceURL + 'login/crear_cuenta', JSON.stringify(data))
             .subscribe(
                 r1 => {
+                    swal({
+                        position: 'center',
+                        type: 'success',
+                        title: 'Registrar Cuenta',
+                        text: 'Enviaremos a tu correo electrónico, tu contraseña',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
                     this.router.navigate(['/login']);
                 },
                 error => {}

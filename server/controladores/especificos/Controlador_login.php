@@ -21,8 +21,8 @@ class Controlador_login extends Controlador_Base
       $parametros = array($identificacion, $email);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       $idUsuario = $respuesta[0]["id"];
-      $parametros = array($idUsuario,$nickname,$idRol);
       $idRol = 1;
+      $parametros = array($idUsuario,$nickname,$idRol);
       $sql = "INSERT INTO Cuenta (idUsuario,nickname,idRol) VALUES (?,?,?);";
       $cuenta = $this->conexion->ejecutarConsulta($sql,$parametros);
       $args = array("email"=>$email, "accion"=>"Tu cuenta en LSystems-Boxes");

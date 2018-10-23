@@ -1,6 +1,6 @@
 <div class="register-page">
     <div class="content">
-        <form class="register-form">
+        <form class="register-form" #formCtrl="ngForm">
             <div class="text-center">
                 <img src="./../../assets/images/logo.png" style="width: 150px; height: auto;" />
             </div>
@@ -53,7 +53,7 @@
             </div>
             <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
-                    <button mat-raised-button color="primary" class="w-100" (click)="crearCuenta()">Crear</button>
+                    <button type="submit" [disabled]="formCtrl.form.invalid" mat-raised-button color="primary" class="w-100" (click)="crearCuenta()">Crear</button>
                 </div>
             </div>
             <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 0 0">
