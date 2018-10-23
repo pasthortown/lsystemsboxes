@@ -1,4 +1,4 @@
-use ignug;
+USE lsystemsboxes;
 
 INSERT INTO Estado (id, descripcion) VALUES
 (1, 'ACTIVA'),

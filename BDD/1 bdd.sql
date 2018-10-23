@@ -58,7 +58,7 @@ CREATE TABLE Usuario (
 
 CREATE TABLE Cuenta (
     id INT NOT NULL AUTO_INCREMENT,
-    idUsuario VARCHAR(255) NULL,
+    idUsuario INT NULL,
     idRol INT NULL,
     nickname VARCHAR(50) NULL,
     clave BLOB NULL,
