@@ -51,47 +51,6 @@ END;
 //
 DELIMITER ;
 
-
-DELIMITER //
-CREATE TRIGGER Actualizar_Cuenta
-AFTER UPDATE ON Cuenta
-FOR EACH ROW
-BEGIN
-   INSERT INTO Auditoria(tabla, anterior, nuevo, comando, usuario, ip, fecha) VALUES ('Cuenta',CONCAT("\"id\":",OLD.id,"\"idUsuario\":",OLD.idUsuario,"\"idRol\":",OLD.idRol,"\"nickname\":",OLD.nickname,"\"clave\":",OLD.clave),CONCAT("\"id\":",NEW.id,"\"idUsuario\":",NEW.idUsuario,"\"idRol\":",NEW.idRol,"\"nickname\":",NEW.nickname,"\"clave\":",NEW.clave),@comando,@usuario,@ip,NOW());
-   SET @comando = null;
-   SET @usuario = null;
-   SET @ip = null;
-END;
-//
-DELIMITER ;
-
-DELIMITER //
-CREATE TRIGGER Insertar_Cuenta
-BEFORE INSERT ON Cuenta
-FOR EACH ROW
-BEGIN
-   INSERT INTO Auditoria(tabla, anterior, nuevo, comando, usuario, ip, fecha) VALUES ('Cuenta',null,CONCAT("\"id\":",NEW.id,"\"idUsuario\":",NEW.idUsuario,"\"idRol\":",NEW.idRol,"\"nickname\":",NEW.nickname,"\"clave\":",NEW.clave),@comando,@usuario,@ip,NOW());
-   SET @comando = null;
-   SET @usuario = null;
-   SET @ip = null;
-END;
-//
-DELIMITER ;
-
-DELIMITER //
-CREATE TRIGGER Borrar_Cuenta
-AFTER DELETE ON Cuenta
-FOR EACH ROW
-BEGIN
-   INSERT INTO Auditoria(tabla, anterior, nuevo, comando, usuario, ip, fecha) VALUES ('Cuenta',CONCAT("\"id\":",OLD.id,"\"idUsuario\":",OLD.idUsuario,"\"idRol\":",OLD.idRol,"\"nickname\":",OLD.nickname,"\"clave\":",OLD.clave),null,@comando,@usuario,@ip,NOW());
-   SET @comando = null;
-   SET @usuario = null;
-   SET @ip = null;
-END;
-//
-DELIMITER ;
-
-
 DELIMITER //
 CREATE TRIGGER Actualizar_Estado
 AFTER UPDATE ON Estado

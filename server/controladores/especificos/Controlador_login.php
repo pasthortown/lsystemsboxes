@@ -14,6 +14,12 @@ class Controlador_login extends Controlador_Base
       $email = $args["email"];
       $nickname = $args["nickname"];
       $telefono = $args["telefono"];
+      $sql = "SELECT id FROM Usuario WHERE identificacion = ? AND email = ?;";
+      $parametros = array($identificacion, $email);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      if(!($respuesta[0]==0)){
+          return false;
+      }
       $parametros = array($identificacion,$nombres,$apellidos,$latitudDireccionDomicilio,$longitudDireccionDomicilio,$email,$telefono);
       $sql = "INSERT INTO Usuario (identificacion, nombres, apellidos, latitudDireccionDomicilio, longitudDireccionDomicilio, email, telefono) VALUES (?,?,?,?,?,?,?);";
       $insert = $this->conexion->ejecutarConsulta($sql,$parametros);
@@ -82,7 +88,6 @@ class Controlador_login extends Controlador_Base
         $cuerpoMensaje .= '<p>&nbsp;Estimado <strong>'.$usuario.'</strong>.</p>';
         $cuerpoMensaje .= '<p>&nbsp;Su nueva clave es <strong>'.$nuevaClave.'</strong></p>';
         $cuerpoMensaje .= '</div></div></div>';
-        $mailSender->enviarMail(FROMMAIL,ALIASSOPORTEMAIL, CLAVEMAIL, 'lsystemsboxes@gmail.com',ALIASSOPORTEMAIL,$email,$usuario,$cuerpoMensaje,$accion);
-        return true;
+        return $mailSender->enviarMail(FROMMAIL,ALIASSOPORTEMAIL, CLAVEMAIL, 'lsystemsboxes@gmail.com',ALIASSOPORTEMAIL,$email,$usuario,$cuerpoMensaje,$accion);
    }
 }

@@ -39,14 +39,25 @@ export class RegisterComponent implements OnInit {
             .post(this.webServiceURL + 'login/crear_cuenta', JSON.stringify(data))
             .subscribe(
                 r1 => {
-                    swal({
-                        position: 'center',
-                        type: 'success',
-                        title: 'Registrar Cuenta',
-                        text: 'Enviaremos a tu correo electrónico, tu contraseña',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
+                    if (r1.json()) {
+                        swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Registrar Cuenta',
+                            text: 'Enviaremos a tu correo electrónico, tu contraseña',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'Registrar Cuenta',
+                            text: 'Tuvimos problemas al registrarte con la información proporcionada',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
                     this.router.navigate(['/login']);
                 },
                 error => {}
