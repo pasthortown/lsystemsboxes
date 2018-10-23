@@ -1,6 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import {
     MatButtonModule,
     MatIconModule,
@@ -16,6 +17,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     // for development
@@ -35,6 +37,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserAnimationsModule,
         LayoutModule,
         OverlayModule,
+        HttpModule,
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {

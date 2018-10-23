@@ -1,0 +1,68 @@
+<div class="register-page">
+    <div class="content">
+        <form class="register-form">
+            <div class="text-center">
+                <img src="./../../assets/images/logo.png" style="width: 150px; height: auto;" />
+            </div>
+            <div style="float:left; width: 100%; height: 20px;">
+            </div>
+            <div class="text-center">
+                <h3 class="app-name">LSystems Boxes</h3>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="text" placeholder="Identificación" name="identificacion" id="identificacion" [(ngModel)]="identificacion" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="text" placeholder="Nombres" name="nombres" id="nombres" [(ngModel)]="nombres" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="text" placeholder="Apellidos" name="apellidos" id="apellidos" [(ngModel)]="apellidos" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="email" placeholder="Correo Electrónico" name="email" id="email" [(ngModel)]="email" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="text" placeholder="Nombre de Usuario" name="nickname" id="nickname" [(ngModel)]="nickname" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="text" placeholder="Teléfono" name="telefono" id="telefono" [(ngModel)]="telefono">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <button mat-raised-button color="primary" class="w-100" (click)="crearCuenta()">Crear</button>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 0 0">
+                <div fxFlexFill>
+                    <a mat-raised-button color="warn" class="w-100" [routerLinkActive]="'active'" [routerLink]="['/login']">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
