@@ -5,6 +5,6 @@ ALTER TABLE EstadoCaja ADD UNIQUE unique_index_estado_caja (idCaja,fecha,idEstad
 ALTER TABLE Estado ADD UNIQUE unique_index_estado (descripcion);
 ALTER TABLE Reciclaje ADD UNIQUE unique_index_reciclaje (idCaja,fecha,idUsuario,cantidad);
 ALTER TABLE Rol ADD UNIQUE unique_index_rol (descripcion);
-ALTER TABLE Usuario ADD UNIQUE unique_index_usuario (identificacion, email);
+ALTER TABLE Usuario ADD UNIQUE unique_index_usuario (email);
 ALTER TABLE Cuenta ADD UNIQUE unique_index_cuenta (idUsuario, idRol, nickname);
 ALTER TABLE AvatarUsuario ADD UNIQUE unique_index_avatar_usuario (idUsuario);
