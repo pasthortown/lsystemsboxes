@@ -8,9 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule, MatCheckboxModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, NgbModule, BoxesRoutingModule, FlexLayoutModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule],
+    imports: [CommonModule, NgxQRCodeModule, FormsModule, NgbModule, BoxesRoutingModule, FlexLayoutModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule],
     declarations: [BoxesComponent]
 })
 export class BoxesModule {}

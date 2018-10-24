@@ -59,6 +59,14 @@
         </button>
     </div>
 </div>
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <h3 fxFlexFill class="text-center">Distribución de Cajas</h3>
+</div>
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column">
+    <div fxFlexFill>
+        <div #gmap class="col-12" style="height: 800px;"></div>
+    </div>
+</div>
 
 <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
@@ -86,8 +94,18 @@
             <div class="form-group row">
                 <div class="col-12">
                     <mat-form-field fxFlexFill>
-                        <input matInput readonly type="text" placeholder="Código" name="codigo" id="codigo" [(ngModel)]="entidadSeleccionada.codigo">
+                        <input matInput type="text" placeholder="Código" name="codigo" id="codigo" [(ngModel)]="entidadSeleccionada.codigo">
                     </mat-form-field>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12 text-center">
+                    <ngx-qrcode
+                        [qrc-element-type]="'img'"
+                        [qrc-value] = "entidadSeleccionada.codigo"
+                        qrc-class = "aclass"
+                        qrc-errorCorrectionLevel = "L">
+                    </ngx-qrcode>
                 </div>
             </div>
            <div class="form-group row">

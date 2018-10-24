@@ -38,25 +38,7 @@ export class BoxesComponent implements OnInit {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-        this.permitirAgregarMarcadoresConClick();
     }
-
-    permitirAgregarMarcadoresConClick() {
-        /*const mapa = this.map;
-        let caja = this.entidadSeleccionada;
-        let marcadorDireccion = new google.maps.Marker({
-            position: new google.maps.LatLng(usuario.latitudDireccionDomicilio, usuario.longitudDireccionDomicilio),
-            map: this.map,
-            draggable: true,
-            title: 'Dirección'
-        });
-        this.map.addListener('click', function(event) {
-            const location = event.latLng;
-            marcadorDireccion.setPosition(location);
-            usuario.latitudDireccionDomicilio = marcadorDireccion.getPosition().toJSON().lat;
-            usuario.longitudDireccionDomicilio = marcadorDireccion.getPosition().toJSON().lng;
-        });*/
-   }
 
     open(content, nuevo){
         if(nuevo){
