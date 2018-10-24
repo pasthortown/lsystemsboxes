@@ -6,6 +6,7 @@ import { AvatarUsuario } from 'src/app/entidades/CRUD/AvatarUsuario';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import swal from 'sweetalert2';
+import { } from '@types/googlemaps';
 
 @Component({
     selector: 'app-profile',
@@ -13,7 +14,9 @@ import swal from 'sweetalert2';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    @ViewChild('fileInput')
+    @ViewChild('fileInput') file: any;
+    @ViewChild('gmap') gmapElement: any;
+    map: google.maps.Map;
     fileInput;
     usuario: Usuario;
     fotoPerfil: AvatarUsuario;
@@ -37,7 +40,42 @@ export class ProfileComponent implements OnInit {
         this.cambiandoClave = false;
         this.getCuenta();
         this.getFotoPerfil();
+        this.startGoogleMap();
     }
+
+    startGoogleMap() {
+        let mapProp = {
+            center: new google.maps.LatLng(this.usuario.latitudDireccionDomicilio, this.usuario.longitudDireccionDomicilio),
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        if (this.usuario.latitudDireccionDomicilio == 0 || this.usuario.longitudDireccionDomicilio == 0) {
+            mapProp = {
+                center: new google.maps.LatLng(-0.1943667, -78.490857),
+                zoom: 7,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+        }
+        this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+        this.permitirAgregarMarcadoresConClick();
+    }
+
+    permitirAgregarMarcadoresConClick() {
+        const mapa = this.map;
+        let usuario = this.usuario;
+        let marcadorDireccion = new google.maps.Marker({
+            position: new google.maps.LatLng(usuario.latitudDireccionDomicilio, usuario.longitudDireccionDomicilio),
+            map: this.map,
+            draggable: true,
+            title: 'Dirección'
+        });
+        this.map.addListener('click', function(event) {
+            const location = event.latLng;
+            marcadorDireccion.setPosition(location);
+            usuario.latitudDireccionDomicilio = marcadorDireccion.getPosition().toJSON().lat;
+            usuario.longitudDireccionDomicilio = marcadorDireccion.getPosition().toJSON().lng;
+        });
+   }
 
     validarClaveEvent() {
         if (this.clave == null || this.clave === '') {
