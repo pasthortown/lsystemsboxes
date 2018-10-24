@@ -1,25 +1,143 @@
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <h2 fxFlexFill class="text-right">Administración de Cajas</h2>
+</div>
 <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column">
-    <div fxFlex>
-        <mat-card fxFlexFill fxLayoutAlign="center center">
-            100%
-        </mat-card>
+    <div fxFlex class="btn-group" role="group">
+        <button class="btn btn-default" (click)="refresh()">
+            <span class="fa fa-refresh"></span>&nbsp;Leer
+        </button>
+        <button class="btn btn-success" (click)="open(content,false)">
+            <span class="fa fa-edit"></span>&nbsp;Editar
+        </button>
+        <button class="btn btn-info" (click)="open(content,true)">
+            <span class="fa fa-plus"></span>&nbsp;Nuevo
+        </button>
+        <button class="btn btn-danger" disabled>
+            <span class="fa fa-remove"></span>&nbsp;Borrar
+        </button>
+    </div>
+</div>
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Código</strong>
+                    </span>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Dirección</strong>
+                    </span>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Estado</strong>
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let actual of entidades">
+                <td>
+                    <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
+                </td>
+                <td>{{actual.codigo}}</td>
+                <td>{{actual.direccion}}</td>
+                <td>{{actual.estado}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column">
+    <div fxFlex class="btn-group" role="group">
+        <button class="btn btn-info">
+            <span class="fa fa-qrcode"></span>&nbsp;Generar Reporte de Códigos QR
+        </button>
     </div>
 </div>
 
-<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
-    <div [fxFlex]="15">
-        <mat-card fxFlexFill fxLayoutAlign="center center">
-            15%
-        </mat-card>
-    </div>
-    <div [fxFlex]="25">
-        <mat-card fxFlexFill fxLayoutAlign="center center">
-            25%
-        </mat-card>
-    </div>
-    <div [fxFlex]="60">
-        <mat-card fxFlexFill fxLayoutAlign="center center">
-            60%
-        </mat-card>
-    </div>
-</div>
+<ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+           <h4 class="modal-title">
+              <span *ngIf="entidadSeleccionada.id != 0">
+                 Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+              </span>
+              <span *ngIf="entidadSeleccionada.id === 0">
+                 Ingreso de Datos:
+              </span>
+           </h4>
+           <button type="button" class="close" aria-label="Close" (click)="d('ClickEnX')">
+              <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form>
+           <div class="form-group row">
+                <div class="col-12">
+                    <mat-form-field fxFlexFill>
+                        <input matInput readonly type="text" placeholder="Identificador" name="identificador" id="identificador" [(ngModel)]="entidadSeleccionada.id">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <mat-form-field fxFlexFill>
+                        <input matInput readonly type="text" placeholder="Código" name="codigo" id="codigo" [(ngModel)]="entidadSeleccionada.codigo">
+                    </mat-form-field>
+                </div>
+            </div>
+           <div class="form-group row">
+               <div class="col-12">
+                   <mat-form-field fxFlexFill>
+                       <input matInput type="text" placeholder="Dirección" name="direccion" id="direccion" [(ngModel)]="entidadSeleccionada.direccion">
+                   </mat-form-field>
+               </div>
+           </div>
+           <div class="form-group row">
+                <div class="col-12">
+                    <mat-form-field fxFlexFill>
+                        <input matInput type="number" placeholder="Ubicación Latitud" name="latitud" id="latitud" [(ngModel)]="entidadSeleccionada.latitudUbicacion">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="form-group row">
+                 <div class="col-12">
+                     <mat-form-field fxFlexFill>
+                         <input matInput type="number" placeholder="Ubicación Longitud" name="longitud" id="longitud" [(ngModel)]="entidadSeleccionada.longitudUbicacion">
+                     </mat-form-field>
+                 </div>
+             </div>
+           <div class="form-group row">
+                <div class="col-12">
+                    <mat-form-field fxFlexFill>
+                        <input matInput type="number" placeholder="Ancho" name="ancho" id="ancho" [(ngModel)]="entidadSeleccionada.ancho">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-12">
+                   <mat-form-field fxFlexFill>
+                       <input matInput type="number" placeholder="Largo" name="largo" id="largo" [(ngModel)]="entidadSeleccionada.largo">
+                   </mat-form-field>
+               </div>
+           </div>
+           <div class="form-group row">
+              <div class="col-12">
+                  <mat-form-field fxFlexFill>
+                      <input matInput type="number" placeholder="Profundidad" name="profundidad" id="profundidad" [(ngModel)]="entidadSeleccionada.profundidad">
+                  </mat-form-field>
+              </div>
+          </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+           <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
+              <span class="fa fa-save"></span>&nbsp;Guardar
+           </button>
+           <button type="button" class="btn btn-danger" (click)="c('close')"><span class="fa fa-close"></span>&nbsp;Cerrar</button>
+        </div>
+     </ng-template>

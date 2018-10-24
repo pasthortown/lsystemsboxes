@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +9,7 @@ import { MatButtonModule, MatCheckboxModule, MatInputModule } from '@angular/mat
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ProfileRoutingModule, FlexLayoutModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule],
+    imports: [CommonModule, FormsModule, NgbModule, ProfileRoutingModule, FlexLayoutModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule],
     declarations: [ProfileComponent]
 })
 export class ProfileModule {}
