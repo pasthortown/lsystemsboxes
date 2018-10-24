@@ -6,7 +6,7 @@ class Controlador_cuenta extends Controlador_Base
    function crear($args)
    {
       $cuenta = new Cuenta($args["id"],$args["idUsuario"],$args["idRol"],$args["nickname"],$args["clave"]);
-      $sql = "INSERT INTO Cuenta (idUsuario,idRol,nickname,clave) VALUES (?,?,?,?);";
+      $sql = "INSERT INTO Cuenta (idUsuario,idRol,nickname,clave) VALUES (?,?,?,aes_encrypt(?,'".CIFRADO."'));";
       $parametros = array($cuenta->idUsuario,$cuenta->idRol,$cuenta->nickname,$cuenta->clave);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
@@ -20,7 +20,7 @@ class Controlador_cuenta extends Controlador_Base
    {
       $cuenta = new Cuenta($args["id"],$args["idUsuario"],$args["idRol"],$args["nickname"],$args["clave"]);
       $parametros = array($cuenta->idUsuario,$cuenta->idRol,$cuenta->nickname,$cuenta->clave,$cuenta->id);
-      $sql = "UPDATE Cuenta SET idUsuario = ?,idRol = ?,nickname = ?,clave = ? WHERE id = ?;";
+      $sql = "UPDATE Cuenta SET idUsuario = ?,idRol = ?,nickname = ?,clave = aes_encrypt(?,'".CIFRADO."') WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

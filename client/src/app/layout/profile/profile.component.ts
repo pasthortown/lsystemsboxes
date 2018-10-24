@@ -183,6 +183,8 @@ export class ProfileComponent implements OnInit {
                                     showConfirmButton: false,
                                     timer: 2000
                                 });
+                                sessionStorage.clear();
+                                localStorage.clear();
                                 this.router.navigate(['/login']);
                             },
                             error => {}
@@ -208,6 +210,8 @@ export class ProfileComponent implements OnInit {
                         showConfirmButton: false,
                         timer: 2000
                     });
+                    sessionStorage.clear();
+                    localStorage.clear();
                     this.router.navigate(['/login']);
                 },
                 error => {}
