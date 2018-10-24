@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TopnavComponent implements OnInit {
     pushRightClass: string = 'push-right';
+    nombre: string;
 
     constructor(public router: Router, private translate: TranslateService) {
         this.router.events.subscribe(val => {
@@ -18,7 +19,10 @@ export class TopnavComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+        this.nombre = usuario.nombres + ' ' + usuario.apellidos;
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');
@@ -38,5 +42,9 @@ export class TopnavComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+    }
+
+    perfil() {
+        this.router.navigate(['/profile']);
     }
 }

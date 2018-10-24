@@ -46,10 +46,10 @@ class Controlador_cuenta extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Cuenta;";
+         $sql = "SELECT id, idUsuario, idRol, nickname FROM Cuenta;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Cuenta WHERE id = ?;";
+         $sql = "SELECT id, idUsuario, idRol, nickname FROM Cuenta WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_cuenta extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Cuenta LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT id, idUsuario, idRol, nickname FROM Cuenta LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_cuenta extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna = ?;";
+            $sql = "SELECT id, idUsuario, idRol, nickname FROM Cuenta WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT id, idUsuario, idRol, nickname FROM Cuenta WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT id, idUsuario, idRol, nickname FROM Cuenta WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Cuenta WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT id, idUsuario, idRol, nickname FROM Cuenta WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

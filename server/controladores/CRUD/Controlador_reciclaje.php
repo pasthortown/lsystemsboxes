@@ -22,11 +22,11 @@ class Controlador_reciclaje extends Controlador_Base
    function actualizar($args)
    {
       $reciclaje = new Reciclaje($args["id"],$args["idCaja"],$args["cantidad"],$args["fecha"],$args["idUsuario"]);
-      $parametros = array($reciclaje->idCaja,$reciclaje->cantidad,$reciclaje->fecha,$reciclaje->idUsuario,$reciclaje->id);
       $sql = "UPDATE Reciclaje SET idCaja = ?,cantidad = ?,fecha = ?,idUsuario = ? WHERE id = ?;";
       $fechaNoSQLTime = strtotime($reciclaje->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $reciclaje->fecha = $fechaSQLTime;
+      $parametros = array($reciclaje->idCaja,$reciclaje->cantidad,$reciclaje->fecha,$reciclaje->idUsuario,$reciclaje->id);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

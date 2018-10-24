@@ -30,6 +30,14 @@ const routes: Routes = [
                 loadChildren: './forms/forms.module#FormsModule'
             },
             {
+                path: 'profile',
+                loadChildren: './profile/profile.module#ProfileModule'
+            },
+            {
+                path: 'boxes',
+                loadChildren: './boxes/boxes.module#BoxesModule'
+            },
+            {
                 path: 'grid',
                 loadChildren: './grid/grid.module#GridModule'
             },

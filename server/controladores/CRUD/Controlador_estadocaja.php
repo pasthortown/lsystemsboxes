@@ -22,11 +22,11 @@ class Controlador_estadocaja extends Controlador_Base
    function actualizar($args)
    {
       $estadocaja = new EstadoCaja($args["id"],$args["cantidad"],$args["idEstado"],$args["idCaja"],$args["fecha"]);
-      $parametros = array($estadocaja->cantidad,$estadocaja->idEstado,$estadocaja->idCaja,$estadocaja->fecha,$estadocaja->id);
       $sql = "UPDATE EstadoCaja SET cantidad = ?,idEstado = ?,idCaja = ?,fecha = ? WHERE id = ?;";
       $fechaNoSQLTime = strtotime($estadocaja->fecha);
       $fechaSQLTime = date("Y-m-d H:i:s", $fechaNoSQLTime);
       $estadocaja->fecha = $fechaSQLTime;
+      $parametros = array($estadocaja->cantidad,$estadocaja->idEstado,$estadocaja->idCaja,$estadocaja->fecha,$estadocaja->id);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
